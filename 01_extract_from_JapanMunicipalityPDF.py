@@ -1,6 +1,7 @@
 import pdfplumber
 import pandas as pd
 from pathlib import Path
+import jaconv # from full-width katakana to hiragana
 
 PDF_PATH = Path("data_raw/Japan_Municipality.pdf")
 OUTPUT_PATH = Path("data_output/raw_masterDB.csv")
@@ -8,25 +9,36 @@ OUTPUT_PATH = Path("data_output/raw_masterDB.csv")
 def main():
     records = []
 
+    # PDF to table
     with pdfplumber.open(PDF_PATH) as pdf:
         for page in pdf.pages:
+
             table = page.extract_table()
 
             if not table:
                 continue
-            
+
+
             for row in table[1:]:
+
+                # Structural check: Skip rows with insufficient columns to prevent index errors
                 if row is None or len(row) < 5:
                     continue
-                try:
-                    code = row[0]
-                    prefecture = row[1]
-                    municipality = row[2]
-                    reading_kana = row[4]
 
+                try:
+                    code = row[0]           # 団体コード / Municipality_Code
+                    prefecture = row[1]     # 都道府県名(漢字) / Prefecture_Name(kanji)
+                    municipality = row[2]   # 市区町村名(漢字) / Municipality_Name(Kanji)
+                    reading_kana = row[4]   # 市区町村名(カタカナ) / Municipality_Name(katakana)
+
+                    # Content check: Skip rows with empty municipality names (e.g., prefecture-only rows)
                     if code and municipality and str(municipality).strip() != "":
                         municipality = municipality.replace('\n', '')
                         reading_kana = reading_kana.replace('\n', '') if reading_kana else ""
+
+                        # Normalize reading: Convert half-width katakana to hiragana
+                        reading_kana = jaconv.kata2hira(jaconv.hankaku2zenkaku(reading_kana))
+
                         records.append([
                             code,
                             prefecture,
@@ -35,8 +47,11 @@ def main():
                         ])
                 except IndexError:
                    continue
+
+    # table to Database
     df = pd.DataFrame(
         records,
+
         columns=[
             "municipality_code",
             "prefecture",
