@@ -56,7 +56,7 @@ def main():
             "municipality_code",
             "prefecture",
             "municipality_name",
-            "reading_katakana"
+            "reading_hiragana"
         ]
     )
 
