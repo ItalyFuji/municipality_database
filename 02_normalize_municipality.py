@@ -52,7 +52,7 @@ def main():
     df[["municipality_category", "name_short", "reading_short"]] = df.apply(format_municipality, axis=1)
 
     # Remove rows that were identified as wards ("区")
-    df = df.dropna(subset=["name_short"])
+    df = df.dropna(subset=["municipality_category"])
 
     # Remove duplicate entries based on municipality code, prefecture, and name
     df = df.drop_duplicates(subset=["municipality_code", "prefecture", "municipality_name"], keep="first")
