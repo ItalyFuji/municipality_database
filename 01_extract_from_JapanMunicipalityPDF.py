@@ -19,7 +19,7 @@ def main():
                 continue
 
 
-            for row in table[1:]:
+            for row in table:
 
                 # Structural check: Skip rows with insufficient columns to prevent index errors
                 if row is None or len(row) < 5:
@@ -46,7 +46,7 @@ def main():
                             reading_kana
                         ])
                 except IndexError:
-                   continue
+                    continue
 
     # table to Database
     df = pd.DataFrame(
@@ -60,6 +60,7 @@ def main():
         ]
     )
 
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(OUTPUT_PATH, index=False, encoding="utf-8-sig")
     print("Extracted Municipality")
 
