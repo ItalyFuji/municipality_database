@@ -62,7 +62,7 @@ def test_ward_with_prefix_is_filtered():
 # --- ヘッダー・ノイズ（除外対象） ---
 
 def test_header_noise_has_no_category():
-    # 市・町・村・区に該当しない行はcategory=Noneになる（dropnaで除外される）
+    # 市・町・村・区に該当しない行はcategory=NaNになる（dropnaで除外される）
     result = format_municipality(make_row("市区町村名", "しくちょうそんめい"))
-    assert result[0] is None
+    assert pd.isna(result[0])
     assert result[1] == "市区町村名"
