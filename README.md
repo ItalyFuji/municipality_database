@@ -45,6 +45,19 @@ pip install -r requirements.txt
 
 ---
 
+## Setup / 準備
+
+総務省のページから全国地方公共団体コードのPDFをダウンロードし、`data_raw/` フォルダに `Japan_Municipality.pdf` という名前で保存してください。
+
+Download the municipality code PDF from the Ministry of Internal Affairs and Communications website and place it in the `data_raw/` folder as `Japan_Municipality.pdf`.
+
+```
+Municipality_Database/
+├── data_raw/
+│   └── Japan_Municipality.pdf   ← ここに置く / Place the PDF here
+└── data_output/                 ← 出力先（自動生成）/ Output folder (auto-generated)
+```
+
 ## Usage / 使い方
 
 ### Option A: Run all steps at once / まとめて実行

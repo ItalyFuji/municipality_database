@@ -1,6 +1,8 @@
 # Generated output
-data_output/
-data_raw/
+data_output/*
+data_raw/*
+!data_output/.gitkeep
+!data_raw/.gitkeep
 
 # Python cache
 __pycache__/
