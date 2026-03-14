@@ -51,6 +51,12 @@ pip install -r requirements.txt
 
 Download the municipality code PDF from the Ministry of Internal Affairs and Communications website and place it in the `data_raw/` folder as `Japan_Municipality.pdf`.
 
+- ページ / Page: https://www.soumu.go.jp/denshijiti/code.html
+- PDF直リンク / Direct PDF link: https://www.soumu.go.jp/main_content/000925834.pdf
+
+> **注意 / Note:** PDF直リンクのURLは総務省の更新に伴い変更される場合があります。リンク切れの場合は上記ページから最新版をダウンロードしてください。
+> The direct PDF link may change when the Ministry updates the file. If the link is broken, download the latest version from the page above.
+
 ```
 Municipality_Database/
 ├── data_raw/
