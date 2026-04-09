@@ -61,7 +61,7 @@ Download the municipality code PDF from the Ministry of Internal Affairs and Com
 Municipality_Database/
 ├── data_raw/
 │   └── Japan_Municipality.pdf   ← ここに置く / Place the PDF here
-└── data_output/                 ← 出力先（自動生成）/ Output folder (auto-generated)
+└── data_output/                 ← 出力先 / Output folder
 ```
 
 ## Usage / 使い方
@@ -126,6 +126,6 @@ Runs unit tests for the `format_municipality()` function in `02_normalize_munici
 
 ## Notes / 注意事項
 
-- 政令指定都市の区（例：札幌市中央区）は除外されます / Wards of designated cities (e.g., Chuo-ku, Sapporo) are excluded.
+- 「区」で終わる行（政令指定都市の区・東京特別区を含む）は除外されます / All rows ending in "区" (including wards of designated cities and Tokyo special wards) are excluded.
 - 読み仮名は半角・全角カタカナをひらがなに正規化します / Readings are normalized from katakana (half/full-width) to hiragana.
 - 出力CSVのエンコーディングは `UTF-8 BOM付き` です（Excel対応）/ Output CSV is encoded in `UTF-8 with BOM` for Excel compatibility.

@@ -24,7 +24,7 @@ def test_city_shi_ending():
     assert result.tolist() == ["市", "札幌", "さっぽろ"]
 
 def test_city_reading_not_shi():
-    # 読みが「し」で終わらない場合、読みはそのまま
+    # 「し」で終わる読みでも、短縮名(kanji)が正しく生成されることを確認
     result = format_municipality(make_row("四日市市", "よっかいちし"))
     assert result[0] == "市"
     assert result[1] == "四日市"
